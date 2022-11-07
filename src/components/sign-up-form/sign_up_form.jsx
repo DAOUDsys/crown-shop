@@ -52,8 +52,9 @@ const SignUpForm = () => {
                 <FormInput label='Email' type="email" name='email' value={email} onChange={handelChange} required/>
                 <FormInput label='Password' type="password" minLength='8' name='password' value={password} onChange={handelChange} required/>
                 <FormInput label='Confirm Password' type="password" minLength='8' name='confirmPassword' value={confirmPassword} onChange={handelChange} required/>
-
+                <div className='b-container'>
                 <Button children='Sign Up'  type='submit' />
+                </div>
             </form>
         </div>
     );

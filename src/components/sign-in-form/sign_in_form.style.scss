@@ -1,0 +1,22 @@
+.sign-in-container {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+
+    h2 {
+        margin: 20px 0;
+    }
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+@media (max-width: 400px) {
+    
+    .button-container {
+        flex-direction: column;
+    } 
+    .sign-in-container {
+        width: 90vw;
+    } 
+}

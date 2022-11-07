@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin:  30px auto;
+}
+@media (max-width: 400px) {
+    
+    .container {
+        text-align: center;
+        flex-direction: column;
+        margin-bottom: 30px;
+        align-items: center;
+        width: 90vw;
+    } 
+}
+
+

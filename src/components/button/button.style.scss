@@ -25,10 +25,13 @@
     &.G-button {
       background-color: #4285f4;
       color: white;
+      transition-duration: 0.3s;
   
       &:hover {
-        background-color: #357ae8;
-        border: none;
+        
+        background-color: white;
+        color: #4285f4;
+        border: 1px solid #4285f4;
       }
     }
   
