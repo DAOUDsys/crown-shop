@@ -1,0 +1,16 @@
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-inline: 30px;
+    align-items: center;
+    height: 90px;
+}
+.links {
+    
+    .link {
+        padding: 10px;
+        &:hover {
+            background-color: rgba(250, 235, 215, 0.493);
+        }
+    }
+}
