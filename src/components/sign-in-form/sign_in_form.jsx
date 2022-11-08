@@ -4,6 +4,7 @@ import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import {signInWithGoogle, createUserFromAuth, signInRegularUser} from '../../utils/firebase/firebase.utils';
 
+
 const defaultFormData = {
     email: '',
     password: '',
@@ -12,8 +13,7 @@ const defaultFormData = {
 const SignInForm = () => {
 
     const logGoogleUser = async () => {
-        const {user} = await signInWithGoogle();
-        await createUserFromAuth(user);
+        await signInWithGoogle();
     }
 
     const [formData, setFormData] = useState(defaultFormData);
@@ -28,7 +28,7 @@ const SignInForm = () => {
         event.preventDefault();
         
             try {
-                const response = await signInRegularUser(email, password)
+                await signInRegularUser(email, password);
                 resetFormData();
             } catch(error) {
                 if(error.code === 'auth/wrong-password')
@@ -55,6 +55,9 @@ const SignInForm = () => {
             <form onSubmit={ handelSubmit }>
                 <FormInput label='Email' type="email" name='email' value={email} onChange={handelChange} required/>
                 <FormInput label='Password' type="password" minLength='8' name='password' value={password} onChange={handelChange} required/>
+                {/* <span style={{
+                    color:'red', display:'none',
+                }}>incorrect password</span> */}
                 <div className='button-container'>
                 <Button children='SIGN IN'  type='submit' />
                 <Button children='GOOGLE SIGN IN' type='button' onClick={logGoogleUser} buttonType='G-button' />

@@ -22,6 +22,8 @@ const SignUpForm = () => {
         setFormData({...formData, [name]:value});
     }
 
+
+
     const handelSubmit = async (event) => {
         event.preventDefault();
         if(password === confirmPassword) {
@@ -38,6 +40,8 @@ const SignUpForm = () => {
             return;
         }
     }
+
+
 
     const resetFormData = () => {
         setFormData(defaultFormData);

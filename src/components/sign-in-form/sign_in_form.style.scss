@@ -17,6 +17,10 @@
         flex-direction: column;
     } 
     .sign-in-container {
+        margin-bottom: 20px;
         width: 90vw;
+        button {
+            margin-bottom: 5px;
+        }
     } 
 }
