@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    margin-bottom: 10px;
+    img {
+        width: 40%;
+    }
+    .second-container {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        margin-left: 10px;
+        justify-content: center;
+        position: relative;
+        .name {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        flex-direction: column;
+        img {
+            width: 50%;
+        }
+    .second-container {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+}
+}

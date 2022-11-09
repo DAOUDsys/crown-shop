@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './sign_in_form.style.scss';
 import FormInput from '../form-input/form-input.component'; 
 import Button from '../button/button.component';
-import {signInWithGoogle, createUserFromAuth, signInRegularUser} from '../../utils/firebase/firebase.utils';
+import {signInWithGoogle, signInRegularUser} from '../../utils/firebase/firebase.utils';
 
 
 const defaultFormData = {

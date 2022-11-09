@@ -24,7 +24,6 @@ const firebaseConfig = {
   export const auth = getAuth();
   export const signInWithGoogle = () => signInWithPopup(auth,googleProvider);
 
-
   export const db =getFirestore();
 
   export const createUserFromAuth = async (userAuth,additionalData) => {
@@ -62,6 +61,6 @@ const firebaseConfig = {
     return await signInWithEmailAndPassword(auth, email, password);
   }
 
-  export const SignOutUser = async (auth) => signOut(auth);
+  export const signOutUser = async () => await signOut(auth);
 
   export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);

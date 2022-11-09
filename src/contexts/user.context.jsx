@@ -17,11 +17,10 @@ export const UserProvider = ({children}) => {
                 createUserFromAuth(user);
             }
             setCurrentUser(user);
-        })
-
+        });
         return unsubscribe;
     }, []);
 
-    return <UserContext.Provider value={value}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 
 }

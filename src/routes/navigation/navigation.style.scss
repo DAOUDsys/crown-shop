@@ -1,7 +1,6 @@
 .navigation {
     display: flex;
     justify-content: space-between;
-    margin-inline: 30px;
     align-items: center;
     height: 90px;
     span {
@@ -9,7 +8,9 @@
     }
 }
 .links {
-    
+    display: flex;
+    justify-content: end;
+    align-items: center;
     .link {
         padding: 10px;
         &:hover {
