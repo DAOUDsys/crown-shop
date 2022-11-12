@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './sign_in_form.style.scss';
 import FormInput from '../form-input/form-input.component'; 
-import Button from '../button/button.component';
+import Button,{BUTTON_TYPE_CLASSES} from '../button/button.component';
 import {signInWithGoogle, signInRegularUser} from '../../utils/firebase/firebase.utils';
 
 
@@ -60,7 +60,7 @@ const SignInForm = () => {
                 }}>incorrect password</span> */}
                 <div className='button-container'>
                 <Button children='SIGN IN'  type='submit' />
-                <Button children='GOOGLE SIGN IN' type='button' onClick={logGoogleUser} buttonType='G-button' />
+                <Button children='GOOGLE SIGN IN' type='button' onClick={logGoogleUser} buttonType={BUTTON_TYPE_CLASSES.google} />
 
                 </div>
             </form>

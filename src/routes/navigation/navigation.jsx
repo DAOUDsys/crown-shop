@@ -1,11 +1,11 @@
 import {Outlet,Link} from 'react-router-dom';
-import './navigation.style.scss';
 import { Fragment, useContext,useState } from 'react';
 import {ReactComponent as CrownLogo} from '../../assets/crown.svg';
 import { UserContext } from '../../contexts/user.context';
 import {signOutUser} from '../../utils/firebase/firebase.utils';
 import CartIcon from '../../components/cart-icon/cart_icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart_dropdown';
+import {NavigationContainer, LogoContainer, NavLinks, NavLink} from './navigation.style';
 
 const Navigation = () => {
 
@@ -15,30 +15,29 @@ const Navigation = () => {
     const changeDropdownDisplay = () => {
         if(dis === 'none') setDis('block');
         else setDis('none');
-        console.log(dis);
     }
 
     return (
     <Fragment>
-        <div className='navigation'>
-            <Link className='main-logo' to='/'>
+        <NavigationContainer>
+            <LogoContainer to='/'>
                 <CrownLogo className='logo' />
-            </Link>
-        <div className='links'>
-            <Link className='link' to='/shop'>
+            </LogoContainer>
+        <NavLinks>
+            <NavLink to='/shop'>
                 SHOP
-            </Link>
+            </NavLink>
             {
                 currentUser ? 
-                (<span className='link' onClick={signOutUser}>SIGN OUT</span>)
-                :(<Link className='link' to='/sign-in'> SIGN IN </Link>)
+                (<NavLink as='span' onClick={signOutUser}>SIGN OUT</NavLink>)
+                :(<NavLink to='/sign-in'> SIGN IN </NavLink>)
             }
             <div onClick={changeDropdownDisplay} >
             <CartIcon  />
             </div>
-        </div>
+        </NavLinks>
         <CartDropdown dis={dis} />
-        </div>
+        </NavigationContainer>
         <Outlet />
     </Fragment>
     )
