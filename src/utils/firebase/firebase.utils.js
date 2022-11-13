@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider,
   createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
-import {getFirestore, doc, getDoc, setDoc,collection,WriteBatch, writeBatch, query, getDocs} from 'firebase/firestore'
+import {getFirestore, doc, getDoc, setDoc,collection, writeBatch, query, getDocs} from 'firebase/firestore'
 
 const firebaseConfig = {
     apiKey: "AIzaSyBZ6cf-qwmD5yR1xvJnwKig3Vm5cBIGdtY",
@@ -43,13 +43,9 @@ const firebaseConfig = {
     const q = query(collectionRef);
 
     const querySnapshot = await getDocs(q);
-    const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-      const {title, items} = docSnapshot.data();
-      acc[title.toLowerCase()] = items;
-      return acc;
-    },{})
-
-    return categoryMap;
+    return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
+    
+    
   }
 
 
