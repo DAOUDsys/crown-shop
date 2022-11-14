@@ -11,6 +11,7 @@ export const CategoryReducer = (state = INITIAL_STATE,action) => {
 
     switch(type) {
         case CategoryActionTypes.FETCH_CATEGORY_START:
+            console.log('inside start')
             return {
                 ...state,
                 isLoading: true,

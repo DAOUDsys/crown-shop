@@ -39,6 +39,7 @@ const firebaseConfig = {
   }
 
   export const getCollectionAndDocuments = async () => {
+    console.log('inside get collection')
     const collectionRef = collection(db, 'categories');
     const q = query(collectionRef);
 

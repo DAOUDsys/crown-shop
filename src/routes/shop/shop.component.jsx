@@ -3,14 +3,15 @@ import Category from '../../components/category/category.component';
 import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import {fetchCategoriesAsync} from '../../store/categories/category.action';
+import {fetchCategoriesStart} from '../../store/categories/category.action';
 
 const Shop = () => {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-            dispatch(fetchCategoriesAsync());
+        console.log('inside shope')
+            dispatch(fetchCategoriesStart());
     },[]);
 
     return (
