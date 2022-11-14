@@ -1,6 +1,8 @@
 
-const CategoryActionTypes ={
-    SET_CATEGORIES: 'SET_CATEGORY_MAP',
+const CategoryActionTypes = {
+    FETCH_CATEGORY_START: 'FETCH_CATEGORY_START',
+    FETCH_CATEGORY_SUCCESS: 'FETCH_CATEGORY_SUCCESS',
+    FETCH_CATEGORY_FAILED: 'FETCH_CATEGORY_FAILED',
 };
 
 export default CategoryActionTypes;
