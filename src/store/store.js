@@ -12,7 +12,7 @@ const loggerMiddleWare = (store) => (next) => (action) => {
 const persistConfig = {
     key: 'root',
     storage,
-    blackList: ['user']
+    whiteList: ['cart']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
