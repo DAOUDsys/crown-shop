@@ -1,17 +1,16 @@
+import {Outlet} from 'react-router-dom';
+import { Fragment, useContext,useState } from 'react';
+import {ReactComponent as CrownLogo} from '../../assets/crown.svg';
+import { UserContext } from '../../contexts/user.context';
+import {signOutUser} from '../../utils/firebase/firebase.utils';
 import CartIcon from '../../components/cart-icon/cart_icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart_dropdown';
-import {Outlet} from 'react-router-dom';
-import { Fragment, useState } from 'react';
-import {ReactComponent as CrownLogo} from '../../assets/crown.svg';
-import {signOutUser} from '../../utils/firebase/firebase.utils';
 import {NavigationContainer, LogoContainer, NavLinks, NavLink} from './navigation.style';
-import {useSelector} from 'react-redux';
-import {selectCurrentUser} from '../../store/user/user.selector';
 
 const Navigation = () => {
 
-    const currentUser = useSelector(selectCurrentUser)
-
+    const {currentUser} = useContext(UserContext);
+    
     let [dis,setDis] = useState("none")
     const changeDropdownDisplay = () => {
         if(dis === 'none') setDis('block');

@@ -1,9 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider,
-  createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, User, NextOrObserver } from 'firebase/auth';
-import {getFirestore, doc, getDoc, setDoc,collection, writeBatch, query, getDocs, QueryDocumentSnapshot} from 'firebase/firestore'
-import {Category} from '../../store/categories/category.types';
-
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import {getFirestore, doc, getDoc, setDoc,collection,WriteBatch, writeBatch, query, getDocs} from 'firebase/firestore'
 
 const firebaseConfig = {
     apiKey: "AIzaSyBZ6cf-qwmD5yR1xvJnwKig3Vm5cBIGdtY",
@@ -28,9 +26,7 @@ const firebaseConfig = {
 
   export const db =getFirestore();
 
-  export type objectToAdd = {title: string;}
-
-  export const addCollectionAndDocuments = async <T extends objectToAdd>(collectionKey: string, objects: T[]):Promise<void> => {
+  export const addCollectionAndDocuments = async (collectionKey, objects) => {
     const collectionRef = collection(db, collectionKey);
     const batch = writeBatch(db);
 
@@ -42,31 +38,22 @@ const firebaseConfig = {
     await batch.commit();
   }
 
-
-
-  export const getCollectionAndDocuments = async ():Promise<Category[]> => {
+  export const getCollectionAndDocuments = async () => {
     const collectionRef = collection(db, 'categories');
     const q = query(collectionRef);
 
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map(docSnapshot => docSnapshot.data() as Category);
-    
-    
+    const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+      const {title, items} = docSnapshot.data();
+      acc[title.toLowerCase()] = items;
+      return acc;
+    },{})
+
+    return categoryMap;
   }
 
-  export type AdditionalData = {
-    name?: string;
-  }
 
-  export type UserData = {
-    createdAt: Date;
-    displayName: string;
-    email: string;
-  }
-
-  export const createUserFromAuth = async (
-    userAuth: User, 
-    additionalData = {} as AdditionalData):Promise<void | QueryDocumentSnapshot<UserData>> => {
+  export const createUserFromAuth = async (userAuth,additionalData) => {
 
     
     if(!userAuth) return;
@@ -80,22 +67,22 @@ const firebaseConfig = {
         try {
             await setDoc(userDocRef, {displayName, email, createDate, ...additionalData})
         } catch(error) {
-            if(error === 'auth/email-already-in-use') {
+            if(error.code === 'auth/email-already-in-use') {
                 alert ("this email is already in use");
             } else {
-                console.log("error while creating a user ", error);}
+                console.log("error while creating a user ", error.message);}
         }
     }
-    return userSnapshot as QueryDocumentSnapshot<UserData>;
+    return userDocRef;
   };
 
-  export const createRegularUser = async (email: string, password: string) => {
+  export const createRegularUser = async (email, password) => {
 
     if(!email || !password) return;
     return await createUserWithEmailAndPassword(auth, email, password);
   };
 
-  export const signInRegularUser = async (email: string, password: string) => {
+  export const signInRegularUser = async (email, password) => {
 
     if(!email || !password) return;
     return await signInWithEmailAndPassword(auth, email, password);
@@ -103,4 +90,4 @@ const firebaseConfig = {
 
   export const signOutUser = async () => await signOut(auth);
 
-  export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => onAuthStateChanged(auth, callback);
+  export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
